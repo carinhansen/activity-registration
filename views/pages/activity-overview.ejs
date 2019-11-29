@@ -1,0 +1,16 @@
+<div id="activity-overview">
+  <div class="container">
+    <div class="header-container">
+      <h1>Alle activiteiten</h1>
+      <a class="btn btn-outline-info mt-5 header-btn" href="/activiteiten/nieuw">Activiteit toevoegen</a>
+    </div>
+    <% activities.forEach(function(activity){ %>
+      <div class="q-and-a">
+        <hr class="mt-4 mb-4"/>
+        <h4><a href="/detail/<%= activity.id%>"><%= activity.title%></a></h4>
+        <p><%= activity.description%></p>
+      </div>
+    <% })%>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

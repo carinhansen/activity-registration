@@ -74,6 +74,12 @@ by a large team, those administrative features might be split across a few diffe
 So, while this \`isSuperAdmin\` demarcation might not be the right approach forever, it's a good place to start.`
     },
 
+    isCommandant: {
+      type: 'boolean',
+      description: 'Whether this user is a "super admin" with extra permissions, etc.',
+      defaultsTo: false,
+    },
+
     passwordResetToken: {
       type: 'string',
       description: 'A unique token used to verify the user\'s identity when recovering a password.  Expires after 1 use, or after a set amount of time has elapsed.'

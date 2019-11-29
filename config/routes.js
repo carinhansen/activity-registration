@@ -20,6 +20,10 @@ module.exports.routes = {
   'GET /legal/terms':        { action:   'legal/view-terms' },
   'GET /legal/privacy':      { action:   'legal/view-privacy' },
   'GET /contact':            { action:   'view-contact' },
+  'GET /activiteiten':                   'ActivityController.overview',
+  'GET /activiteiten/nieuw':             'ActivityController.add',
+  'POST /activiteiten/toevoegen':        'ActivityController.create',
+  'GET /detail/:id':                     'ActivityController.detail',
 
   'GET /signup':             { action: 'entrance/view-signup' },
   'GET /email/confirm':      { action: 'entrance/confirm-email' },

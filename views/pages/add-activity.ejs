@@ -1,0 +1,21 @@
+<div id="add-activity">
+  <div class="container">
+    <h1>Voeg een nieuwe activiteit toe</h1>
+    <div class="q-and-a">
+      <hr class="mt-4 mb-4"/>
+      <form method="post" action="/activiteiten/toevoegen">
+        <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+        <div class="form-group">
+          <label for="title">Activiteit titel</label>
+          <input name="title" class="form-control form-control-sm" type="text" id="title" required/>
+        </div>
+        <div class="form-group">
+          <label for="description">Beschrijving</label>
+          <textarea class="form-control" name="description" id="description" required></textarea>
+        </div>
+        <input type="submit" value="submit" class="btn btn-secondary btn-sm"/>
+      </form>
+    </div>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
