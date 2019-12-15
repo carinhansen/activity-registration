@@ -1,19 +1,142 @@
 <div id="add-activity">
   <div class="container">
-    <h1>Voeg een nieuwe activiteit toe</h1>
+    <h1>Activiteit toevoegen</h1>
     <div class="q-and-a">
       <hr class="mt-4 mb-4"/>
       <form method="post" action="/activiteiten/toevoegen">
         <input type="hidden" name="_csrf" value="<%- _csrf %>" />
         <div class="form-group">
-          <label for="title">Activiteit titel</label>
+          <label for="title">Titel*</label>
           <input name="title" class="form-control form-control-sm" type="text" id="title" required/>
         </div>
         <div class="form-group">
-          <label for="description">Beschrijving</label>
+          <label for="description">Beschrijving:*</label>
           <textarea class="form-control" name="description" id="description" required></textarea>
         </div>
-        <input type="submit" value="submit" class="btn btn-secondary btn-sm"/>
+
+        <div class="form-group">
+          <label for="shortDescription">Korte beschrijving:*</label>
+          <p><small class="small-text">Maximaal 250 karakters</small></p>
+          <textarea class="form-control" name="shortDescription" id="" required></textarea>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+                <label for="type">Opkomsten:*</label>
+                <select class="form-control" id="type" name="type" required>
+                  <option value="" selected="selected" hidden="hidden">Selecteer een opkomst</option>
+                  <option disabled>-</option>
+                  <option>Steunverlening</option>
+                  <option>Pelotonsopkomst</option>
+                  <option>Oefening</option>
+                  <option>Telling</option>
+                  <option>Vergadering</option>
+                  <option>Compagniesopkomst</option>
+                  <option>Ceremonieel</option>
+                  <option>Overige activiteit</option>
+                </select>
+            </div>
+          </div>
+          <div class="col">
+          <div class="form-group">
+              <label for="location">Opkomstlocatie</label>
+              <input name="location" class="form-control form-control-sm" type="text" id="location"/>
+          </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="startDate">Begin datum:*</label>
+              <input value="" name="startDate" type="date" class="form-control" required/>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="startTime">Begin tijd:</label>
+              <input type="time" id="" name="startTime" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="endDate">Eind datum:*</label>
+              <input value="" name="endDate" type="date" class="form-control" required/>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="endTime">Eind tijd:</label>
+              <input type="time" id="" name="endTime" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="subject">Onderwerp:*</label>
+              <select class="form-control" id="subject" name="subject" required>
+                <option value="" selected="selected" hidden="hidden">Selecteer een onderwerp</option>
+                <option disabled>-</option>
+                <option>MBV</option>
+                <option>SIM</option>
+                <option>MZV</option>
+                <option>FIT</option>
+                <option>DCP</option>
+                <option>ISK</option>
+                <option>GB</option>
+                <option>O&T (1 t/m 10)</option>
+                <option>MDO</option>
+                <option>Anders:</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="otherSubject">Anders:</label>
+              <input name="otherSubject" class="form-control form-control-sm" type="text" id="otherSubject"/>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label>Doelgroep:*</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="true" name="targetPeleton">
+            <label class="form-check-label" for="targetPeleton">
+              Peleton
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="true" name="targetInzetbaarPersoneel">
+            <label class="form-check-label" for="targetInzetbaarPersoneel">
+              Inzetbaar personeel
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="true" name="targetKader">
+            <label class="form-check-label" for="targetKader">
+              Kader
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="deadline">Deadline aanwezigheid melden:*</label>
+              <input value="" name="deadline" type="date" class="form-control" required/>
+            </div>
+          </div>
+        </div>
+
+        <input type="submit" value="Opslaan" class="btn btn-secondary btn-sm"/>
       </form>
     </div>
   </div>

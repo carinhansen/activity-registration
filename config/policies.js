@@ -12,6 +12,12 @@ module.exports.policies = {
 
   '*': 'is-logged-in',
 
+  ActivityController: {
+    'overview': 'is-commandant',
+    'edit': 'is-commandant',
+    'delete': 'is-commandant',
+  },
+
   // Bypass the `is-logged-in` policy for:
   'entrance/*': true,
   'account/logout': true,

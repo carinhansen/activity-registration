@@ -1,13 +1,68 @@
 <div id="detail">
   <div class="container">
     <div class="header-container">
-      <h1>Activiteit detail pagina</h1>
+      <h1><%= activity.title%></h1>
+        <% if(me&&me.isCommandant) { %>
+        <div class="header-btn">
+        <a href="/activiteiten/bewerken/<%= activity.id%>" class="btn btn-secondary" style="display: inline-block">Bewerken</a>
+        <form action="/activiteiten/verwijderen/<%= activity.id%>" method="post" style="display: inline-block">
+            <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+            <input type="submit" value="Verwijderen" class="btn btn-danger"/>
+        </form>
+        </div>
+        <% } %>
     </div>
-    <div class="q-and-a">
       <hr class="mt-4 mb-4"/>
-      <h4><%= activity.title%></h4>
-      <p><%= activity.description%></p>
+      <div class="row" style="margin-bottom: 40px;">
+        <div class="col-sm-8">
+            <p><%= activity.description%></p>
+        </div>
+        <div class="col-sm-4">
+            <p style="color:#929292">Start datum en tijd: </p>
+            <p><%= activity.startDate%> <%= activity.startTime%></p>
+
+            <p style="color:#929292">Eind datum en tijd: </p>
+            <p><%= activity.endDate%> <%= activity.endTime%></p>
+
+            <p style="color:#929292">Deadline aanwezigheid melden: </p>
+            <p><%= activity.deadline%></p>
+        </div>
     </div>
+
+      <div class="row">
+          <div class="col-sm-4"><p style="color:#929292">Opkomst: </p><p><%= activity.type%></p></div>
+          <div class="col-sm-4"><p style="color:#929292">Opkomstlocatie: </p><p><%= activity.location%></p></div>
+          <div class="col-sm-4"><p style="color:#929292">Onderwerp: </p><p><%= activity.subject%></p></div>
+          <div class="col-sm-4"><p style="color:#929292">Doelgroep peleton: </p><p><%= activity.targetPeleton%></p></div>
+          <div class="col-sm-4"><p style="color:#929292">Doelgroep inzetbaar personeel: </p><p><%= activity.targetInzetbaarPersoneel%></p></div>
+          <div class="col-sm-4"><p style="color:#929292">Doelgroep kader: </p><p><%= activity.targetKader%></p></div>
+      </div>
+
+      <% if(me&&me.isCommandant) { %>
+      <h4 style="margin-top: 30px">Genodigde manschappen</h4>
+      <table class="table">
+          <thead>
+          <tr>
+              <th>Wapenreknr.</th>
+              <th>Email</th>
+          </tr>
+          </thead>
+          <tbody>
+              <% presentUsers.forEach(function(presentUser){ %>
+                  <tr>
+                      <td style="color: green"><%= presentUser.fullName%></td>
+                      <td style="color: green"><%= presentUser.emailAddress%></td>
+                  </tr>
+              <% })%>
+              <% users.forEach(function(user){ %>
+                  <tr>
+                      <td><%= user.fullName%></td>
+                      <td><%= user.emailAddress%></td>
+                  </tr>
+              <% })%>
+          </tbody>
+      </table>
+      <% } %>
   </div>
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

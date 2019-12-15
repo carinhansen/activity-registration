@@ -1,0 +1,97 @@
+<div id="personal-overview">
+  <div class="container">
+    <div class="header-container">
+      <h1>Persoonlijk overzicht</h1>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Bewerkte activiteit</th>
+        <th>Start datum</th>
+        <th>Start tijd</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% edits.forEach(function(edit){ %>
+        <tr>
+          <td><a href="/detail/<%= edit.id%>"><%= edit.title%></a></td>
+          <td><%= edit.startDate%></td>
+          <td><%= edit.startTime%></td>
+        </tr>
+      <% })%>
+      </tbody>
+    </table>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Naderende activiteiten</th>
+        <th>Start datum</th>
+        <th>Start tijd</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% nearActivities.forEach(function(nearActivity){ %>
+        <tr>
+          <td><a href="/detail/<%= nearActivity.id%>"><%= nearActivity.title%></a></td>
+          <td><%= nearActivity.startDate%></td>
+          <td><%= nearActivity.startTime%></td>
+        </tr>
+      <% })%>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top: 40px">Al jouw activiteiten</h4>
+    <% activities.forEach(function(activity){ %>
+    <%
+      let message = false;
+      for(let i = 0; i <= 7; i++){
+        let currentDate = new Date();
+        let futureDate = currentDate.getDate() + i;
+        currentDate.setDate(futureDate);
+
+        let newYear = currentDate.getFullYear();
+        let newMonth = currentDate.getMonth() + 1;
+        if(newMonth < 10){
+          newMonth = '0' + newMonth;
+        }
+        let newDay = currentDate.getDate();
+        if(newDay < 10){
+          newDay = '0' + newDay;
+        }
+
+        let date = newYear + '-' + newMonth + '-' + newDay;
+
+        if(activity.startDate === date) {
+          message = true;
+        }
+      }
+      %>
+      <a href="/detail/<%= activity.id%>">
+        <div>
+          <hr class="mt-4 mb-4"/>
+          <h5 class="activity-title"><%= activity.title %></h5>
+          <p class="activity-description"><%= activity.shortDescription%></p>
+          <p><small class="small-text">Start datum en tijd: <%= activity.startDate%> <%= activity.startTime%></small></p>
+        </div>
+      </a>
+      <div>
+        <% if(message){ %>
+          <p class="not-present">De activiteit vindt plaats binnen 1 week. Bij afwezigheid dient er een VRA ingevuld te worden</p>
+        <% } %>
+      </div>
+      <div class="present-btn-container">
+        <form action="/persoonlijk-overzicht/present/<%= activity.id%>" method="post">
+          <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+          <input type="submit" value="Aanwezig" class="btn btn-primary"/>
+        </form>
+        <form action="/persoonlijk-overzicht/afwezig/<%= activity.id%>" method="post">
+          <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+          <input type="submit" value="Afwezig" class="btn btn-danger"/>
+        </form>
+      </div>
+    <% })%>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

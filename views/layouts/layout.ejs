@@ -5,7 +5,7 @@
 } %><!DOCTYPE html>
 <html>
   <head>
-    <title>NEW_APP_NAME</title>
+    <title>Activiteiten registratie</title>
 
     <% /* Viewport tag for sensible mobile support */ %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -45,31 +45,35 @@
   </head>
   <body>
     <div id="page-wrap">
-      <header id="page-header" class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
-        <a class="navbar-brand mr-0" href="/"><img class="logo" alt="NEW_APP_NAME logo" src="/images/logo.png"/></a>
+      <header id="page-header" class="navbar navbar-expand-sm navbar-dark bg-nav flex-column flex-md-row justify-content-between">
+        <a class="navbar-brand mr-0" href="/">
+          Activiteiten
+<!--          <img class="logo" alt="NEW_APP_NAME logo" src="/images/logo.png"/>-->
+        </a>
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
+            <% if(me&&me.isCommandant) { %>
+              <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/activiteiten">Activiteiten</a>
+            <% } %>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/persoonlijk-overzicht">Persoonlijk overzicht</a>
           <!-- Only in desktop nav -->
           <div class="nav-item dropdown d-none d-sm-block">
             <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
             <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
-              <a class="dropdown-item" href="/account">Settings</a>
-              <a class="dropdown-item" href="/activiteiten">Activiteiten</a>
-              <a class="dropdown-item" href="/logout">Sign out</a>
+              <a class="dropdown-item" href="/account">Account instellingen</a>
+              <a class="dropdown-item" href="/logout">Uitloggen</a>
             </div>
           </div>
           <!-- Only in mobile nav -->
-          <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account Settings</a>
-          <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
+          <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account instellingen</a>
+          <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Uitloggen</a>
           <% } else { %>
           <!-- LOGGED-OUT NAVIGATION -->
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq">FAQ</a>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Log in</a>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Inloggen</a>
           <!-- Only in desktop nav -->
           <div class="form-inline d-none ml-2 d-md-block" >
-            <a class="btn btn-outline-info" href="/signup">Sign up</a>
+            <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/signup">Aanmelden</a>
           </div>
           <!-- Only in mobile nav -->
           <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup">Sign up</a>
@@ -96,14 +100,11 @@
 
       <footer id="page-footer" class="navbar navbar-light justify-content-between flex-row-reverse">
         <div class="nav">
-          <small class="nav-item"><a class="nav-link text-info" href="/contact">Contact<span class="d-none d-sm-inline"> us</span></a></small>
-          <small class="nav-item"><a class="nav-link text-info" href="/legal/terms">Terms<span class="d-none d-sm-inline"> of use</span></a></small>
-          <small class="nav-item"><a class="nav-link text-info" href="/legal/privacy">Privacy<span class="d-none d-sm-inline"> policy</span></a></small>
           <% if(me) { %>
-          <small class="nav-item"><a class="nav-link text-info" href="/logout">Sign out</a></small>
+          <small class="nav-item"><a class="nav-link text-info" href="/logout">Uitloggen</a></small>
           <% } %>
         </div>
-        <small class="copy">Copyright &copy; 2019 <a target="_blank" href="NEW_APP_COMPANY_ABOUT_HREF">NEW_APP_COMPANY_NAME</a>. <br class="xs-only"/>All rights reserved.</small>
+<!--        <small class="copy">Copyright &copy; 2019 <a target="_blank" href="NEW_APP_COMPANY_ABOUT_HREF">Activiteiten registratie</a>. <br class="xs-only"/>All rights reserved.</small>-->
       </footer>
     </div>
 
@@ -150,9 +151,11 @@
     <script src="/js/pages/account/edit-profile.page.js"></script>
     <script src="/js/pages/activity-overview.page.js"></script>
     <script src="/js/pages/add-activity.page.js"></script>
+    <script src="/js/pages/bewerken.page.js"></script>
     <script src="/js/pages/contact.page.js"></script>
     <script src="/js/pages/dashboard/welcome.page.js"></script>
     <script src="/js/pages/detail.page.js"></script>
+    <script src="/js/pages/edit-activity.page.js"></script>
     <script src="/js/pages/entrance/confirmed-email.page.js"></script>
     <script src="/js/pages/entrance/forgot-password.page.js"></script>
     <script src="/js/pages/entrance/login.page.js"></script>
@@ -162,6 +165,7 @@
     <script src="/js/pages/homepage.page.js"></script>
     <script src="/js/pages/legal/privacy.page.js"></script>
     <script src="/js/pages/legal/terms.page.js"></script>
+    <script src="/js/pages/personal-overview.page.js"></script>
     <!--SCRIPTS END-->
 
     <% /* Display an overlay if the current browser is not supported.

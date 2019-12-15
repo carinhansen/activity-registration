@@ -25,9 +25,11 @@ module.exports = {
 
   fn: async function () {
 
-    if (this.req.me) {
-      throw {redirect:'/activity-overview'};
-    }
+    // if (this.req.me.isCommandant) {
+    //   throw {redirect:'/activiteiten'};
+    // } else if (!this.req.me.isCommandant){
+    //   throw {redirect:'/persoonlijk-overzicht'};
+    // }
 
     return {};
 

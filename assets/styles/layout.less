@@ -8,6 +8,9 @@ html, body {
   margin: 0;
 }
 
+.bg-nav {
+  background-color: #064c6d;
+}
 #page-wrap {
   height: 100%;
   /* lesshint-disable */height: auto !important;/* lesshint-enable */
@@ -15,6 +18,33 @@ html, body {
   min-height: 100%;
   position: relative;
   padding-bottom: @footer-height;
+
+  a {
+
+
+    &:hover {
+      text-decoration: none;
+
+      .activity-title {
+        color: #066c9f;
+      }
+    }
+
+    .activity-title {
+      color: #064c6d;
+    }
+  }
+
+  .btn-outline-info {
+    color: #064c6d;
+    border-color: #064c6d;
+
+    &:hover {
+      color: #fff;
+      background-color: #064c6d;
+      border-color: #064c6d;
+    }
+  }
 
   header {
     .logo {
@@ -27,6 +57,45 @@ html, body {
       left: auto;
       right: 0px;
     }
+  }
+
+  .activity-description {
+    margin-bottom: 10px;
+    color: #000;
+  }
+
+  .small-text {
+    color: dimgrey;
+  }
+
+  #activity-overview {
+    padding: 40px 0;
+  }
+
+  .header-container {
+    display: flex;
+    position: relative;
+    height: 80px;
+    align-items: center;
+
+    .header-btn {
+      right: 0;
+      position: absolute;
+      margin-top: 0px!important;
+    }
+  }
+
+  .button-container {
+    height: 40px;
+    position: relative;
+  }
+
+  .inner-button-container {
+    display: flex;
+    position: absolute;
+    right: 0;
+    width: 150px;
+    justify-content: space-around;
   }
 }
 
