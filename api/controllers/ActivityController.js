@@ -92,7 +92,6 @@ module.exports = {
     for(let i = 0; i < users.length; i++){
       let addUser = users[i];
       let checkUserInAcitvity = await UserActivity.findOne({activityId: req.params.id, userId: addUser});
-
       if(!checkUserInAcitvity){
         await UserActivity.create({activityId: req.params.id, userId: addUser});
       }
@@ -102,7 +101,6 @@ module.exports = {
       if(err){
         res.send(500, {error: 'DB Error'});
       }
-
       res.redirect('/activiteiten');
     });
   },
@@ -129,15 +127,11 @@ module.exports = {
     res.view('pages/detail', {activity: activity, users: allUsers, presentUsers: allPresentUsers});
 
   },
-  delete:function(req, res){
-    Activity.destroy({id:req.params.id}).exec((err) => {
-      if(err){
-        res.send(500, {error: 'DB Error'});
-      }
-      res.redirect('/activiteiten');
-    });
+  delete: async function(req, res){
+    await UserActivity.destroy({activityId: req.params.id});
+    await Activity.destroy({id:req.params.id});
+    res.redirect('/activiteiten');
 
-    return false;
   },
   personalOverview:async function(req,res){
     let userActivities = await UserActivity.find({userId:req.me.id});
@@ -150,8 +144,6 @@ module.exports = {
     let nearActivities = new Array();
     for (let nearActivity of userActivities) {
       let fullActivity = await Activity.findOne({id:nearActivity.activityId});
-
-
       for(let i = 0; i <= 7; i++){
         let currentDate = new Date();
         let futureDate = currentDate.getDate() + i;
@@ -175,9 +167,6 @@ module.exports = {
       }
     }
 
-
-
-
     let editActivities = new Array();
     for (let editActivity of userActivities) {
       let fullActivity = await Activity.findOne({id:editActivity.activityId});
@@ -186,7 +175,6 @@ module.exports = {
         editActivities.push(fullActivity);
       }
     }
-
     res.view('pages/personal-overview', {activities: allActivities, edits: editActivities, nearActivities: nearActivities});
   },
   present: async function(req, res){

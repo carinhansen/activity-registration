@@ -2,7 +2,7 @@
   <div class="container" v-if="!cloudSuccess">
     <h1 class="text-center">Maak een account</h1>
     <div class="signup-form">
-      <p class="text-center">Let's get started! Becoming a member is free and only takes a few minutes.</p>
+      <p class="text-center">Vul hier je gegevens in om een account aan te maken.</p>
       <hr/>
       <ajax-form action="signup" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
         <div class="form-group">
@@ -16,12 +16,12 @@
           <div class="invalid-feedback" v-if="formErrors.emailAddress">Please enter a valid email address.</div>
         </div>
         <div class="form-group">
-          <label for="password">Choose a password</label>
+          <label for="password">Kies een wachtwoord</label>
           <input class="form-control" id="password" type="password"  :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password" placeholder="••••••••" autocomplete="new-password">
           <div class="invalid-feedback" v-if="formErrors.password">Please enter a password.</div>
         </div>
         <div class="form-group">
-          <label for="confirm-password">Confirm password</label>
+          <label for="confirm-password">Bevestig wachtwoord</label>
           <input class="form-control" id="confirm-password" type="password"  :class="[formErrors.confirmPassword ? 'is-invalid' : '']" v-model.trim="formData.confirmPassword" placeholder="••••••••" autocomplete="new-password">
           <div class="invalid-feedback" v-if="formErrors.confirmPassword">Your password and confirmation do not match.</div>
         </div>
@@ -32,10 +32,10 @@
         <p class="text-danger" v-if="cloudError==='emailAlreadyInUse'"><small>It looks like there's already an account with your email address. If you forgot your password, you can recover it <a href="password/forgot">here</a>.</small></p>
         <p class="text-danger" v-else-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/support">contact support</a> if the error persists.</small></p>
         <div class="form-group">
-          <ajax-button type="submit" :syncing="syncing" class="btn-dark btn-lg btn-block">Create account</ajax-button>
+          <ajax-button type="submit" :syncing="syncing" class="btn-dark btn-lg btn-block">Maak account</ajax-button>
         </div>
       </ajax-form>
-      <p class="text-center">Have an account? <a href="/login">Sign in</a></p>
+      <p class="text-center">Heb je al een account? <a href="/login">Inloggen</a></p>
     </div>
   </div>
   <div class="container" v-if="cloudSuccess">

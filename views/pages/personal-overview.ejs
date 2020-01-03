@@ -3,13 +3,12 @@
     <div class="header-container">
       <h1>Persoonlijk overzicht</h1>
     </div>
-
     <table class="table">
       <thead>
       <tr>
         <th>Bewerkte activiteit</th>
-        <th>Start datum</th>
-        <th>Start tijd</th>
+        <th>Startdatum</th>
+        <th>Starttijd</th>
       </tr>
       </thead>
       <tbody>
@@ -27,8 +26,8 @@
       <thead>
       <tr>
         <th>Naderende activiteiten</th>
-        <th>Start datum</th>
-        <th>Start tijd</th>
+        <th>Startdatum</th>
+        <th>Starttijd</th>
       </tr>
       </thead>
       <tbody>
@@ -62,25 +61,21 @@
         }
 
         let date = newYear + '-' + newMonth + '-' + newDay;
-
         if(activity.startDate === date) {
           message = true;
         }
-      }
-      %>
+      } %>
       <a href="/detail/<%= activity.id%>">
         <div>
           <hr class="mt-4 mb-4"/>
           <h5 class="activity-title"><%= activity.title %></h5>
           <p class="activity-description"><%= activity.shortDescription%></p>
-          <p><small class="small-text">Start datum en tijd: <%= activity.startDate%> <%= activity.startTime%></small></p>
+          <p><small class="small-text">Datum: <%= activity.startDate%> <br> Tijd: <%= activity.startTime%></small></p>
         </div>
       </a>
-      <div>
-        <% if(message){ %>
-          <p class="not-present">De activiteit vindt plaats binnen 1 week. Bij afwezigheid dient er een VRA ingevuld te worden</p>
-        <% } %>
-      </div>
+      <% if(message){ %>
+        <div><p class="not-present">De activiteit vindt plaats binnen 1 week. Bij afwezigheid dient er een VRA ingevuld te worden</p></div>
+      <% } %>
       <div class="present-btn-container">
         <form action="/persoonlijk-overzicht/present/<%= activity.id%>" method="post">
           <input type="hidden" name="_csrf" value="<%- _csrf %>" />
